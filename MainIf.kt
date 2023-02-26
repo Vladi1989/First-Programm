@@ -1,44 +1,137 @@
 package com.spase_y.my_when
 
-fun main(){
-println("Calculator")
-    whileTest()
+fun main() {
+    println("Calculator")
+    calculator()
+
    }
 
-fun whileTest(){
-    var move = true
+
+fun calculator(){
+    val move = true
+    var result:Double = 0.0
     while (move){
         print("\nВведите первое число: ")
-        val firstNumber = readLine()!!.toIntOrNull()
+        var firstNumber:Any? = readLine()
+        if(firstNumber == "stop"){
+            break
+        }
+        firstNumber = firstNumber.toString().toDoubleOrNull()
+
+
         print("Введите знак: ")
-        val znak = readLine()
+        val znak:String? = readLine()
+        if(znak == "stop") break
+
+
         print("Введите второе число: ")
-        val secondNumber = readLine()!!.toIntOrNull()
-        var result = 0
+        var secondNumber:Any? = readLine()
+        if(secondNumber == "stop"){
+            break
+        }
+        secondNumber = secondNumber.toString().toDoubleOrNull()
+
+
+
 
         if (firstNumber != null && secondNumber != null) {
-            when (znak){
-                "+" -> result = firstNumber + secondNumber
-                "-" -> result = firstNumber - secondNumber
-                "*" -> result = firstNumber * secondNumber
-                "/" -> {
-                    if (secondNumber != 0){
-                        result = firstNumber / secondNumber
+                       when (znak){
+                "+" -> {
+                    result = (firstNumber + secondNumber)
+                    if (isInt(firstNumber.toString().toDouble())){
+                        firstNumber = firstNumber.toInt()
+                    }
+                    if (isInt(secondNumber.toString().toDouble())){
+                        secondNumber = secondNumber.toInt()
+                    }
+                    if(isInt(result)){
+                        print("Результат $firstNumber$znak$secondNumber=${result.toInt()} ")
+                    }
+                    else {
+                        print("Результат $firstNumber$znak$secondNumber=$result ")
                     }
                 }
+                "-" -> {
+                    result = (firstNumber - secondNumber)
+                    if (isInt(firstNumber.toString().toDouble())){
+                        firstNumber = firstNumber.toInt()
+                    }
+                    if (isInt(secondNumber.toString().toDouble())){
+                        secondNumber = secondNumber.toInt()
+                    }
+                    if(isInt(result)){
+                        print("Результат $firstNumber$znak$secondNumber=${result.toInt()} ")
+                    }
+                    else {
+                        print("Результат $firstNumber$znak$secondNumber=$result ")
+                    }
+
+                }
+                "*" -> {
+                    result = (firstNumber * secondNumber)
+                    if (isInt(firstNumber.toString().toDouble())){
+                        firstNumber = firstNumber.toInt()
+                    }
+                    if (isInt(secondNumber.toString().toDouble())){
+                        secondNumber = secondNumber.toInt()
+                    }
+                    if(isInt(result)){
+                        print("Результат $firstNumber$znak$secondNumber=${result.toInt()} ")
+                    }
+                    else {
+                        print("Результат $firstNumber$znak$secondNumber=$result ")
+                    }
+                }
+                "/" -> {
+                    if (secondNumber != 0.0){
+                        result = (firstNumber / secondNumber)
+                        if (isInt(firstNumber.toString().toDouble())){
+                            firstNumber = firstNumber.toInt()
+                        }
+                        if (isInt(secondNumber.toString().toDouble())){
+                            secondNumber = secondNumber.toInt()
+                        }
+                        if(isInt(result)){
+                            print("Результат $firstNumber$znak$secondNumber=${result.toInt()} ")
+                        }
+                        else {
+                            print("Результат $firstNumber$znak$secondNumber=$result ")
+                        }
+
+                    }
+                    else println("Ошибка, на ноль делить нельзя")
+                }
+                else -> println("Вы ввели неправильный знак")
             }
-            if (znak == "+" || znak == "-" || znak == "*" || znak == "/" && secondNumber !=0){
-                print("Результат $firstNumber$znak$secondNumber=$result ")
-            }
-            else if (znak == "/" && secondNumber == 0){
-                print("Вы пытаетесь делить на ноль")
-            }
-            else println("Вы ввели неправильный знак")
+
         }
         else println("Вы ввели неправильные цифры")
     }
 
 }
+fun isInt(a:Double):Boolean{
+    val aString = a.toString()
+    val len = aString.length //3
+    val lastS = aString.get(len-1)
+
+    return lastS == '0'
+}
+
+//fun toIntOrNot(a:Double){
+//    var aInt = a.toInt()
+//    println(a)
+//    print(aInt)
+//    if (a == aInt)
+//}
+
+fun forExample(a:String){
+    val s = a.length
+    for(i in 0 until s){
+        println(a.get(i))
+    }
+}
+
+
 
 
 
